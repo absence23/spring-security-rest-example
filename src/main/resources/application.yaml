@@ -1,0 +1,3 @@
+cors:
+  ui:
+    url: http://localhost:4200
