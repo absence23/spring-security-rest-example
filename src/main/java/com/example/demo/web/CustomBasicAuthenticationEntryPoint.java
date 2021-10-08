@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.web;
 
-import com.example.demo.domain.ErrorResponse;
+import com.example.demo.domain.dto.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

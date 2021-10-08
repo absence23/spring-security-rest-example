@@ -1,6 +1,6 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dto;
 
-public class User {
+public class UserDto {
     private String username;
     private String password;
 

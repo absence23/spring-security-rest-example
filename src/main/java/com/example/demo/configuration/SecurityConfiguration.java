@@ -1,6 +1,6 @@
 package com.example.demo.configuration;
 
-import com.example.demo.controller.CustomBasicAuthenticationEntryPoint;
+import com.example.demo.web.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;

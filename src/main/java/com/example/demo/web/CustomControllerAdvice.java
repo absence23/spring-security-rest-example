@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.web;
 
-import com.example.demo.domain.ErrorResponse;
+import com.example.demo.domain.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

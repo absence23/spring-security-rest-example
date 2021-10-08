@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.web.controller;
 
-import com.example.demo.domain.User;
+import com.example.demo.domain.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +15,9 @@ public class AuthController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping
-    public User auth(Principal principal) {
+    public UserDto auth(Principal principal) {
         LOGGER.debug("User {} logged in", principal.getName());
-        User user = new User();
+        UserDto user = new UserDto();
         user.setUsername(principal.getName());
         return user;
     }

@@ -1,15 +1,16 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dto;
 
-public class Post {
+public class PostDto {
+    private Long id;
     private String title;
     private String text;
 
-    public Post() {
+    public Long getId() {
+        return id;
     }
 
-    public Post(String title, String text) {
-        this.title = title;
-        this.text = text;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -30,8 +31,9 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
-                "title='" + title + '\'' +
+        return "PostDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 '}';
     }

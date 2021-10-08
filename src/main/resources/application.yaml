@@ -1,3 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/test
+    username: postgres
+    password: root
+  liquibase:
+    change-log: classpath:liquibase/master.xml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+
 cors:
   ui:
     url: http://localhost:4200
