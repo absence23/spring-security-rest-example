@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.inMemoryAuthentication().passwordEncoder(passwordEncoder())
                 .withUser("user")
-                .password(passwordEncoder().encode("user"))
+                .password(passwordEncoder().encode("12345678"))
                 .roles("USER");
     }
 }

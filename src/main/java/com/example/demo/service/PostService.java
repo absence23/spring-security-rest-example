@@ -9,5 +9,7 @@ public interface PostService {
 
     List<PostDto> findAll();
 
+    byte[] findImageByPostId(Long id);
+
     PostDto save(PostDto object);
 }

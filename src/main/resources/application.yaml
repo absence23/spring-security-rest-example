@@ -12,3 +12,7 @@ spring:
 cors:
   ui:
     url: http://localhost:4200
+
+storage:
+  folder: C:/temp
+  name-prefix: demo_
