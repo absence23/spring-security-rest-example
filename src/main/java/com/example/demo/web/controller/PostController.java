@@ -6,10 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -27,6 +25,23 @@ public class PostController {
     public List<PostDto> getAllPosts() {
         LOGGER.debug("Getting all the posts");
         return postService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostDto> getPost(@PathVariable Long id) {
+        LOGGER.debug("Getting post with id [{}]", id);
+        PostDto postDto = postService.findById(id);
+        if (postDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(postDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
+        LOGGER.debug("Deleting post with id [{}]", id);
+        postService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}/image")

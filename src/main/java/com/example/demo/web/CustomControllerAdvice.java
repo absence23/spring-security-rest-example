@@ -1,6 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.domain.dto.ErrorResponse;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +16,12 @@ public class CustomControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse errorResponse(MethodArgumentNotValidException ex) {
         return new ErrorResponse("Request contains invalid arguments", 400);
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse errorResponse(EmptyResultDataAccessException ex) {
+        return new ErrorResponse("Cannot find post", 404);
     }
 
     @ExceptionHandler

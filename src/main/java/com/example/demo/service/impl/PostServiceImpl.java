@@ -9,6 +9,11 @@ import com.example.demo.persistence.PostRepository;
 import com.example.demo.service.PostService;
 import com.example.demo.service.converter.Converter;
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,6 +22,7 @@ import java.util.List;
 @Service
 @Transactional
 public class PostServiceImpl implements PostService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostServiceImpl.class);
     private final PostRepository postRepository;
     private final PostImageRepository postImageRepository;
     private final FileManager fileManager;
@@ -30,16 +36,28 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Cacheable("posts")
     public PostDto findById(Long id) {
         return postRepository.findById(id).map(converter::toDto).orElse(null);
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "posts", key = "#id"),
+            @CacheEvict(value = "posts", key = "'all'")
+    })
+    public void delete(Long id) {
+        postRepository.deleteById(id);
+    }
+
+    @Override
+    @Cacheable(value = "posts", key = "'all'")
     public List<PostDto> findAll() {
         return converter.toDto(Lists.newArrayList(postRepository.findAll()));
     }
 
     @Override
+    @CacheEvict(value = "posts", allEntries = true)
     public PostDto save(PostDto postDto) {
         Post post = postRepository.save(converter.toEntity(postDto));
         if (postDto.getImage() != null) {
@@ -56,5 +74,15 @@ public class PostServiceImpl implements PostService {
     public byte[] findImageByPostId(Long id) {
         PostImage image = postImageRepository.findByPostId(id);
         return fileManager.loadFile(image.getImageName());
+    }
+
+
+    /**
+     * Method for test purposes
+     */
+    @Override
+    @CacheEvict(value = "posts", allEntries = true)
+    public void removeCache() {
+
     }
 }

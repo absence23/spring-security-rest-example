@@ -16,3 +16,13 @@ cors:
 storage:
   folder: C:/temp
   name-prefix: demo_
+
+
+---
+
+spring:
+  profiles:
+    active: ehcache
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
