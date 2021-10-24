@@ -40,7 +40,7 @@ public class FileManagerImpl implements FileManager {
     public byte[] loadFile(String fileName) {
         try {
             File file = new File(fileStorageProperties.getFolder() + "/" + fileName);
-            return FileUtils.readFileToByteArray(file);
+            return file.exists() ? FileUtils.readFileToByteArray(file) : null;
         } catch (IOException e) {
             logger.warn("Cannot load file", e);
         }

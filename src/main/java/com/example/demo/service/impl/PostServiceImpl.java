@@ -72,8 +72,10 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public byte[] findImageByPostId(Long id) {
-        PostImage image = postImageRepository.findByPostId(id);
-        return fileManager.loadFile(image.getImageName());
+        return postImageRepository.findByPostId(id)
+                .map(PostImage::getImageName)
+                .map(fileManager::loadFile)
+                .orElse(null);
     }
 
 

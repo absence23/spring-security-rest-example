@@ -4,4 +4,5 @@
     <include file="liquibase/20211008_diff.xml"/>
     <include file="liquibase/20211008_csv.xml"/>
     <include file="liquibase/20211013_post_image.xml"/>
+    <include file="liquibase/20211024_user_table.xml"/>
 </databaseChangeLog>

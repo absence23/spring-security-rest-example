@@ -1,6 +1,8 @@
 package com.example.demo.web;
 
 import com.example.demo.domain.dto.ErrorResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 @ResponseBody
 public class CustomControllerAdvice {
+    private final static Logger logger = LoggerFactory.getLogger(CustomControllerAdvice.class);
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse errorResponse(MethodArgumentNotValidException ex) {
+        logger.warn("Cannot process request", ex);
         return new ErrorResponse("Request contains invalid arguments", 400);
     }
 

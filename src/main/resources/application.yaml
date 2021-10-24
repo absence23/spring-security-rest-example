@@ -8,13 +8,21 @@ spring:
     change-log: classpath:liquibase/master.xml
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${CLIENT_ID}
+            clientSecret: ${CLIENT_SECRET}
+            scope:
+              - email
 
 cors:
-  ui:
-    url: http://localhost:4200
+  ui-url: http://localhost:4200
 
 storage:
-  folder: C:/temp
+  folder: ./temp
   name-prefix: demo_
 
 
