@@ -51,7 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .oauth2Login().successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
                 .logout().logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
-        ;
     }
 
     @Bean
