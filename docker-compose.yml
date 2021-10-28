@@ -7,7 +7,7 @@ services:
       - "8080:8080"
     container_name: demo
     environment:
-      - "SPRING_PROFILES_ACTIVE=docker"
+      - "SPRING_PROFILES_ACTIVE=docker-dev"
   db:
     image: postgres
     ports:
