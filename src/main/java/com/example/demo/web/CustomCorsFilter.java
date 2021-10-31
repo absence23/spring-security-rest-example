@@ -25,8 +25,7 @@ public class CustomCorsFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
-        String url = corsProperties.getUiUrl().substring(0, corsProperties.getUiUrl().lastIndexOf("/"));
-        response.setHeader("Access-Control-Allow-Origin", url);
+        response.setHeader("Access-Control-Allow-Origin", corsProperties.getUiUrl());
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, HEAD, OPTIONS, POST, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");

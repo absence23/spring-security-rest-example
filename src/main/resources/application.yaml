@@ -29,8 +29,9 @@ storage:
 ---
 
 spring:
-  profiles:
-    active: ehcache
+  config:
+    activate:
+      on-profile: ehcache
   cache:
     jcache:
       config: classpath:ehcache.xml
@@ -38,8 +39,9 @@ spring:
 ---
 
 spring:
-  profiles:
-    active: docker-dev
+  config:
+    activate:
+      on-profile: docker-dev
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://db:5432/postgres
@@ -49,8 +51,9 @@ spring:
 ---
 
 spring:
-  profiles:
-    active: cloud
+  config:
+    activate:
+      on-profile: cloud
   datasource:
     driver-class-name: org.postgresql.Driver
     url: ${POSTGRES_URL}
@@ -59,7 +62,6 @@ spring:
 
 server:
   port: ${PORT:8080}
-
 
 cors:
   ui-url: https://absence23.github.io/angular-ui-example
